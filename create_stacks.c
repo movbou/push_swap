@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstnew(int content)
 {
 	t_list	*node;
 
@@ -32,14 +32,19 @@ t_list	*create_the_stack(int n_element)
 {
 	t_list	*head;
 	t_list	*node;
+	t_list *temp;
 
-	head = ft_lstnew("place holder");
+head = ft_lstnew(0);
 	node = NULL;
+	
 	while (n_element)
 	{
-		node = ft_lstnew("place holder");
+		
+		node = ft_lstnew(0);
 		ft_lstadd_back(&head, node);
 		node->next = NULL;
 	}
+
 	return (head);
 }
+
