@@ -29,5 +29,12 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 }
 t_list *create_the_stack(int n_element)
 {
+	t_list *head = ft_lstnew("nothing");
+	while(n_element)
+	{
+		ft_lstadd_back(head, ft_lstnew("place holder"));
+
+	}
+
 
 }
