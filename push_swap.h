@@ -7,10 +7,14 @@
 # include <unistd.h>
 #include <limits.h>
 
+
+
 typedef struct s_list
 {
 	int				content;
 	struct s_list	*next;
 }					t_list;
+
+void	push(t_list **lst, int content);
 
 #endif

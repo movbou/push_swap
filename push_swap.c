@@ -33,12 +33,18 @@ int	ft_atoi(const char *str)
 	}
 	return (n * m);
 }
-void	s_fill(**) int main(int argc, char *argv[])
+void	s_fill(char *str_arg,t_list **stack) 
 {
-	t_list	stack_a;
 
-	while (*argv[2])
+	while (*str_arg)
 	{
-		push(&stack_a, )
-	}
+		push(stack, *str_arg++);
+	}	
+}
+int main(int argc, char *argv[])
+{
+	t_list	*stack_a;
+	t_list *stack_b;
+	s_fill(argv[1],&stack_a);
+
 }
