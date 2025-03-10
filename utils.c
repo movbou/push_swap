@@ -84,3 +84,4 @@ void	rotate(t_list *stack)
 	stack->next = last->next;
 	last->next = temp->next;
 }
+
