@@ -24,3 +24,16 @@ void	push(t_list **lst, int content)
 	*lst = node;
 }
 
+void swap_first_2elements(t_list *stack)
+{
+
+}
+void swap_heads(t_list stack_a,t_list stack_b)
+{
+
+}
+
+void rotate(t_list *stack)
+{
+
+}
