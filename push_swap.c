@@ -34,22 +34,34 @@ int	ft_atoi(const char *str)
 	}
 	return (n * m);
 }
-void	s_fill(char **argv,int argc ,t_list **stack) 
+void	s_fill(char *argv,int argc ,t_list **stack) 
 {
+	/*momkin ikon mochkil hna  */
 
+	/*argv++; 		*/
+
+	/*push(NULL, ft_atoi(argv--));*/
 	while (argc--)
 	{
-		push(stack, ft_atoi(*argv++));
+		push(stack, ft_atoi(argv++));
 	}	
 }
 int main(int argc, char *argv[])
 {
 	t_list	*stack_a;
 	t_list *stack_b;
-	s_fill(argv, argc, &stack_a);
+	/*char b[]={'1', '2', '3', '4'};*/
+	/*s_fill(b,4 , &stack_b);*/
+	s_fill(*argv, argc, &stack_a);
+
 	while (stack_a) {
 		printf("%d\n", stack_a->content);
 		stack_a = stack_a->next;	
 	}
+
+	/*while (stack_b) {*/
+	/*	printf("%d\n", stack_b->content);*/
+	/*	stack_b = stack_b->next;	*/
+	/*}*/
 
 }

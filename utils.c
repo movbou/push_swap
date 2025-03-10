@@ -74,14 +74,13 @@ t_list	*ft_lstlast(t_list *lst)
 	return (lst);
 }
 
-void	rotate(t_list *stack)
+void	rotate(t_list **stack)
 {
 	t_list	*last;
-	t_list	*temp;
+	t_list	*first;
 
-	last = ft_lstlast(stack);
-	temp = stack->next;
-	stack->next = last->next;
-	last->next = temp->next;
+	if (!stack || !(*stack) || !(*stack)->next)
+		return ;
+	last = ft_lstlast(*stack);
+	
 }
-
