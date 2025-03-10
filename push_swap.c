@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdio.h>
 
 static int	check_overflow(int m)
 {
@@ -33,18 +34,22 @@ int	ft_atoi(const char *str)
 	}
 	return (n * m);
 }
-void	s_fill(char *str_arg,t_list **stack) 
+void	s_fill(char **argv,int argc ,t_list **stack) 
 {
 
-	while (*str_arg)
+	while (argc--)
 	{
-		push(stack, *str_arg++);
+		push(stack, ft_atoi(*argv++));
 	}	
 }
 int main(int argc, char *argv[])
 {
 	t_list	*stack_a;
 	t_list *stack_b;
-	s_fill(argv[1],&stack_a);
+	s_fill(argv, argc, &stack_a);
+	while (stack_a) {
+		printf("%d\n", stack_a->content);
+		stack_a = stack_a->next;	
+	}
 
 }
