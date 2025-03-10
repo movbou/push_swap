@@ -76,4 +76,11 @@ t_list	*ft_lstlast(t_list *lst)
 
 void	rotate(t_list *stack)
 {
+	t_list	*last;
+	t_list	*temp;
+
+	last = ft_lstlast(stack);
+	temp = stack->next;
+	stack->next = last->next;
+	last->next = temp->next;
 }
