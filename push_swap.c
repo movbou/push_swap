@@ -34,34 +34,42 @@ int	ft_atoi(const char *str)
 	}
 	return (n * m);
 }
-void	s_fill(char *argv,int argc ,t_list **stack) 
+void	s_fill(char **argv, int argc, t_list **stack)
 {
-	/*momkin ikon mochkil hna  */
-
-	/*argv++; 		*/
-
-	/*push(NULL, ft_atoi(argv--));*/
+	if (!argv || !argc || !stack || !*stack)
+		return ;
+	/*argv++;*/
+	/*push(NULL, ft_atoi(argv));*/
 	while (argc--)
 	{
-		push(stack, ft_atoi(argv++));
-	}	
+		push(stack, ft_atoi(*(argv++)));
+	}
+	ft_lstlast(*stack)->next = NULL;
 }
-int main(int argc, char *argv[])
+void	print_stack(t_list *stack)
+{
+	if (!stack)
+		return ;
+	while (stack)
+	{
+		printf("%d\n", stack->content);
+		stack = stack->next;
+	}
+}
+int	main(int argc, char *argv[])
 {
 	t_list	*stack_a;
-	t_list *stack_b;
-	/*char b[]={'1', '2', '3', '4'};*/
-	/*s_fill(b,4 , &stack_b);*/
-	s_fill(*argv, argc, &stack_a);
+	t_list	*stack_b;
+	char	*b[] = {"1", "2", "3"};
+	char	*a[] = {"3", "2", "2"};
 
-	while (stack_a) {
-		printf("%d\n", stack_a->content);
-		stack_a = stack_a->next;	
-	}
-
-	/*while (stack_b) {*/
-	/*	printf("%d\n", stack_b->content);*/
-	/*	stack_b = stack_b->next;	*/
-	/*}*/
-
+	/*push(&stack_a, 1);*/
+	/*push(&stack_a, 2);*/
+	/*push(&stack_a, 3);*/
+	/*ft_lstlast(stack_a)->next=NULL;*/
+	s_fill(b, 3, &stack_b);
+	s_fill(b, 3, &stack_a);
+	/*s_fill(*argv, argc, &stack_a);*/
+	print_stack(stack_b);
+	print_stack(stack_a);
 }
