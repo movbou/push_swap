@@ -1,6 +1,6 @@
 src = push_swap.c utils.c 
 
 all :
-	gcc $(src) 
+	gcc $(src) && ./a.out 
 debug:	
-	gcc -g $(src)  
+	gcc -g $(src) && gdb ./a.out 

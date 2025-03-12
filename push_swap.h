@@ -15,6 +15,12 @@ typedef struct s_list
 
 void				push(t_list **lst, int content);
 
+void	swap_first_2elements(t_list **stack);
+void	swap_heads(t_list **stack_a, t_list **stack_b);
+void	rrotate(t_list **stack);
+void	rotate(t_list **stack);
+t_list	*ft_lstnew(int content);
+static int	check_overflow(int m);
 t_list				*ft_lstlast(t_list *lst);
 
 #endif
