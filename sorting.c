@@ -6,13 +6,13 @@ int	*bubble_sort(int *array, int ac)
 	int	j;
 	int	temp;
 
-	if (!array)
+	if (!array || ac < 2)
 		return (NULL);
-	i = 0;
 	j = 0;
-	while (j < ac)
+	while (j < ac - 1)
 	{
-		while (i < ac)
+		i = 0;
+		while (i < ac - 1 - j)
 		{
 			if (array[i] > array[i + 1])
 			{
@@ -25,4 +25,15 @@ int	*bubble_sort(int *array, int ac)
 		j++;
 	}
 	return (array);
+}
+
+void min_max(int *sorted_array, int *min, int *max,int ac)
+{
+	*min = sorted_array[0];
+	*max = sorted_array[ac];
+}
+
+int in_range(int min_range, int max_range, int content)
+{
+	return(content<=max_range && content >=min_range);
 }
