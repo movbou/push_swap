@@ -51,10 +51,8 @@ void	swap_first_2elements(t_list **stack)
 	}
 	temp = (*stack)->next;
 	(*stack)->next = (*stack)->next->next;
-	temp->next=*stack;
+	temp->next = *stack;
 	*stack = temp;
-	
-	
 }
 
 void	swap_heads(t_list **stack_a, t_list **stack_b)
@@ -64,7 +62,7 @@ void	swap_heads(t_list **stack_a, t_list **stack_b)
 
 	if (!stack_a || !stack_b)
 		return ;
-	temp = (*stack_a)->next;
+	pswap = temp = (*stack_a)->next;
 	(*stack_a)->next = (*stack_b)->next;
 	(*stack_b)->next = temp;
 	pswap = *stack_a;
@@ -88,14 +86,11 @@ void	rotate(t_list **stack)
 
 	if (!stack || !(*stack) || !(*stack)->next)
 		return ;
-
-	
 	last = ft_lstlast(*stack);
 	first = *stack;
 	*stack = (*stack)->next;
 	last->next = first;
 	first->next = NULL;
-
 }
 
 void	rrotate(t_list **stack)
@@ -105,15 +100,11 @@ void	rrotate(t_list **stack)
 
 	if (!stack || !(*stack) || !(*stack)->next)
 		return ;
-
 	blast = *stack;
-	
 	while (blast->next->next)
 		blast = blast->next;
 	last = ft_lstlast(*stack);
-
 	blast->next = NULL;
 	last->next = *stack;
 	*stack = last;
-
 }
