@@ -37,3 +37,4 @@ int in_range(int min_range, int max_range, int content)
 {
 	return(content<=max_range && content >=min_range);
 }
+
