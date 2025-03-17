@@ -52,3 +52,4 @@ int	check_list_sorted(t_list *stack)
 	}
 	return (1);
 }
+

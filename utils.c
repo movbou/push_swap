@@ -1,6 +1,7 @@
 #include "push_swap.h"
 #include <stdlib.h>
 
+
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*temp;
@@ -108,3 +109,19 @@ void	rrotate(t_list **stack)
 	last->next = *stack;
 	*stack = last;
 }
+
+int	ft_lstsize(t_list *lst)
+{
+	int	len;
+
+	if (!lst)
+		return (0);
+	len = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		len++;
+	}
+	return (len);
+}
+ 
