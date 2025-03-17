@@ -15,6 +15,7 @@ typedef struct s_list
 
 void				push(t_list **lst, int content);
 int					ft_atoi(const char *str);
+int	check_stack_sorted(t_list *stack);
 void				print_stack(t_list *stack);
 void				s_fill(char **argv, int argc, t_list **stack);
 static int			check_overflow(int m);

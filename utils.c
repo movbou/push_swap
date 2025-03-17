@@ -31,7 +31,7 @@ void	push(t_list **lst, int content)
 {
 	t_list	*node;
 
-	if (!lst || !content)
+	if (!lst)
 	{
 		return ;
 	}
