@@ -26,15 +26,15 @@ int	ft_atoi(const char *str)
 }
 void	s_fill(char **argv, int argc, t_list **stack)
 {
+	/*dima khchi hna null */
+	/*khask t8lbha hna lwl ghaikon hwa lakhr khas lwl ikon hwa lwl lfo9 fstack*/
 	if (!argv || !argc)
 		return ;
-	/*argv++;*/
-	/*push(NULL, ft_atoi(argv));*/
-	while (argc--)
-	{
-		push(stack, ft_atoi(*(argv++)));
-	}
+	argc--;
+	while (argc >= 0)
+		push(stack, ft_atoi(argv[argc--]));
 }
+
 void	print_stack(t_list *stack)
 {
 	if (!stack)

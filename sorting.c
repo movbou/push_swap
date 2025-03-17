@@ -27,14 +27,32 @@ int	*bubble_sort(int *array, int ac)
 	return (array);
 }
 
-void min_max(int *sorted_array, int *min, int *max,int ac)
+void	min_max(int *sorted_array, int *min, int *max, int ac)
 {
 	*min = sorted_array[0];
 	*max = sorted_array[ac];
 }
 
-int in_range(int min_range, int max_range, int content)
+int	in_range(int min_range, int max_range, int content)
 {
-	return(content<=max_range && content >=min_range);
+	return (content <= max_range && content >= min_range);
 }
 
+<<<<<<< HEAD
+=======
+int	check_list_sorted(t_list *stack)
+{
+	if (!stack)
+		return (0);
+	while (stack->next)
+	{
+		if (stack->content > stack->next->content)
+		{
+			return (0);
+		}
+		stack = stack->next;
+	}
+	return (1);
+}
+
+>>>>>>> a2211942135df9d9f3779ee5c1dac6c4aa09ba56
