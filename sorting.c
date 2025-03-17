@@ -38,13 +38,13 @@ int	in_range(int min_range, int max_range, int content)
 	return (content <= max_range && content >= min_range);
 }
 
-int	check_stack_sorted(t_list *stack)
+int	check_list_sorted(t_list *stack)
 {
 	if (!stack)
 		return (0);
-	while (stack)
+	while (stack->next)
 	{
-		if (stack < stack->next)
+		if (stack->content > stack->next->content)
 		{
 			return (0);
 		}
