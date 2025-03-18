@@ -1,4 +1,4 @@
-src = push_swap.c utils.c main.c sorting.c 
+src = main.c  moves.c  moves_functions.c  push_swap.c  range_sort.c  sorting.c  utils.c
 
 all :
 	gcc $(src) && ./a.out 

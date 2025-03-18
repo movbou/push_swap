@@ -45,3 +45,5 @@ void	print_stack(t_list *stack)
 		stack = stack->next;
 	}
 }
+
+
