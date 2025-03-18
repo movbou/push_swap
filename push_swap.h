@@ -13,6 +13,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+int	ft_lstsize(t_list *lst);
 void				push_b(t_list **stack_a, t_list **stack_b);
 void				push_a(t_list **stack_a, t_list **stack_b);
 void				push(t_list **lst, int content);
