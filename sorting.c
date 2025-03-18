@@ -38,8 +38,6 @@ int	in_range(int min_range, int max_range, int content)
 	return (content <= max_range && content >= min_range);
 }
 
-<<<<<<< HEAD
-=======
 int	check_list_sorted(t_list *stack)
 {
 	if (!stack)
@@ -54,5 +52,3 @@ int	check_list_sorted(t_list *stack)
 	}
 	return (1);
 }
-
->>>>>>> a2211942135df9d9f3779ee5c1dac6c4aa09ba56
