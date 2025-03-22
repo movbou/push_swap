@@ -13,7 +13,20 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-int	ft_lstsize(t_list *lst);
+void				rotate_a(t_list **stack_a);
+void				rotate_b(t_list **stack_b);
+void				rrotate_a(t_list **stack_a);
+void				rrotate_b(t_list **stack_b);
+void				rr(t_list **stack_b, t_list **stack_a);
+void				rrr(t_list **stack_b, t_list **stack_a);
+void				swap_a(t_list **stack_a);
+void				swap_b(t_list **stack_b);
+void				ss(t_list **stack_b, t_list **stack_a);
+void				push_a(t_list **stack_a, t_list **stack_b);
+void				push_b(t_list **stack_a, t_list **stack_b);
+void				rotate_a(t_list **stack_a);
+int					peek(t_list *stack);
+int					ft_lstsize(t_list *lst);
 void				push_b(t_list **stack_a, t_list **stack_b);
 void				push_a(t_list **stack_a, t_list **stack_b);
 void				push(t_list **lst, int content);
