@@ -28,7 +28,7 @@ void	sort_back_to_a(t_list *stack_a, t_list *stack_b)
 	int	i;
 
 	half_size_b = ft_lstsize(stack_b) / 2;
-	while (stack_a)
+	while (stack_b)
 	{
 		max_index = max_index(stack_b);
 		if (max_index < half_size_b)
@@ -43,6 +43,7 @@ void	sort_back_to_a(t_list *stack_a, t_list *stack_b)
 			while (i--)
 				rrotate_b(&stack_b);
 		}
+	
 	}
 }
 
