@@ -50,21 +50,19 @@ void	sort_back_to_a(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-
-void	move_to_b(t_list **stack_a, t_list **stack_b, int *start, int *end)  
+void	move_to_b(t_list **stack_a, t_list **stack_b, int *start, int *end)
 {
 	int	size;
 
 	if (!stack_a || !*stack_a)
-		return;
-		
+		return ;
 	size = ft_lstsize(*stack_a);
 	while (*start < size && ft_lstsize(*stack_a) > 0)
 	{
 		if ((*stack_a)->content <= *end && (*stack_a)->content > *start)
 		{
 			push_b(stack_a, stack_b);
-			if (*stack_b && (*stack_b)->next && 
+			if (*stack_b && (*stack_b)->next &&
 				(*stack_b)->content < (*stack_b)->next->content)
 				swap_b(stack_b);
 		}
@@ -74,10 +72,7 @@ void	move_to_b(t_list **stack_a, t_list **stack_b, int *start, int *end)
 			rotate_b(stack_b);
 		}
 		else if ((*stack_a)->content > *end)
-		{
 			rotate_a(stack_a);
-		}
-		
 		if (*end == size - 1)
 			(*start)++;
 		else
@@ -88,36 +83,28 @@ void	move_to_b(t_list **stack_a, t_list **stack_b, int *start, int *end)
 	}
 }
 
-
-void sort_stack(t_list **stack_a, t_list **stack_b)
+void	sort_stack(t_list **stack_a, t_list **stack_b)
 {
-    int list_length;
-    int chunk_size;
-    int start;
-    int end;
-    
-    if (!stack_a || !*stack_a)
-        return;
-        
-    list_length = ft_lstsize(*stack_a);
-    
-    if (list_length <= 1)
-        return;
-        
-    if (list_length <= 5)
-    {
-         /*sort_small(stack_a, stack_b, list_length);*/
-        return;
-    }
-    
-    chunk_size = list_length / 5;
-    if (list_length >= 100)
-        chunk_size = list_length / 16;
-    
-    start = 0;
-    end = chunk_size;
-    
-    move_to_b(stack_a, stack_b, &start, &end);
-    
-    sort_back_to_a(stack_a, stack_b);
+	int	list_length;
+	int	chunk_size;
+	int	start;
+	int	end;
+
+	if (!stack_a || !*stack_a)
+		return ;
+	list_length = ft_lstsize(*stack_a);
+	if (list_length <= 1)
+		return ;
+	if (list_length <= 5)
+	{
+		/*sort_small(stack_a, stack_b, list_length);*/
+		return ;
+	}
+	chunk_size = list_length / 5;
+	if (list_length >= 100)
+		chunk_size = list_length / 16;
+	start = 0;
+	end = chunk_size;
+	move_to_b(stack_a, stack_b, &start, &end);
+	sort_back_to_a(stack_a, stack_b);
 }
