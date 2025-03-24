@@ -1,18 +1,19 @@
 #include "push_swap.h"
 #include <stdlib.h>
 
-void	ft_lstclear(t_list **lst, void (*del)(void *))
+void	free_stack(t_list **stack)
 {
 	t_list	*temp;
 
-	if (!lst || !del || !*lst)
+	if (!stack || !*stack)
 		return ;
-	while (*lst)
+	while (*stack)
 	{
-		temp = (*lst)->next;
-		free(lst);
-		*lst = temp;
+		temp = (*stack)->next;
+		free(*stack);
+		*stack = temp;
 	}
+	*stack = NULL;
 }
 
 t_list	*ft_lstlast(t_list *lst)

@@ -13,6 +13,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+void				free_stack(t_list **stack);
 void				rotate_a(t_list **stack_a);
 int					max_index(t_list *stack);
 void				sort_back_to_a(t_list **stack_a, t_list **stack_b);
