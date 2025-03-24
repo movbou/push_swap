@@ -92,31 +92,24 @@ void	sort_stack(t_list **stack_a, t_list **stack_b)
 	int	chunk_size;
 	int	start;
 	int	end;
-	
+
 	if (!stack_a || !*stack_a)
-		return;
-		
+		return ;
 	list_length = ft_lstsize(*stack_a);
-	
 	if (list_length <= 1)
-		return;
-		
+		return ;
 	if (list_length <= 5)
 	{
-		return;
+		return ;
 	}
-	
 	chunk_size = list_length / 5;
 	if (list_length >= 100)
 		chunk_size = list_length / 16;
-	
 	start = 0;
 	end = chunk_size;
-	
 	while (ft_lstsize(*stack_a) > 0)
 	{
 		move_to_b(stack_a, stack_b, &start, &end);
-		
 		if (end < list_length - 1)
 		{
 			start = end + 1;
@@ -125,6 +118,5 @@ void	sort_stack(t_list **stack_a, t_list **stack_b)
 				end = list_length - 1;
 		}
 	}
-	
 	sort_back_to_a(stack_a, stack_b);
 }
