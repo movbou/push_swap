@@ -14,6 +14,11 @@ typedef struct s_list
 }					t_list;
 
 void				rotate_a(t_list **stack_a);
+int					max_index(t_list *stack);
+void				sort_back_to_a(t_list **stack_a, t_list **stack_b);
+void				move_to_b(t_list **stack_a, t_list **stack_b, int *start,
+						int *end);
+void				sort_stack(t_list **stack_a, t_list **stack_b);
 void				rotate_b(t_list **stack_b);
 void				rrotate_a(t_list **stack_a);
 void				rrotate_b(t_list **stack_b);
