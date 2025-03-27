@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdlib.h>
 
 int	max_index(t_list *stack)
 {
@@ -50,7 +51,8 @@ void	sort_back_to_a(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-void	move_to_b(t_list **stack_a, t_list **stack_b, int *start, int *end)
+void	move_to_b(t_list **stack_a, t_list **stack_b, int *start, int *end,
+		int *tab)
 {
 	int	size;
 
@@ -59,19 +61,20 @@ void	move_to_b(t_list **stack_a, t_list **stack_b, int *start, int *end)
 	size = ft_lstsize(*stack_a);
 	while (*start < size && ft_lstsize(*stack_a) > 0)
 	{
-		if ((*stack_a)->content <= *end && (*stack_a)->content > *start)
+		if ((*stack_a)->content <= tab[*end]
+			&& (*stack_a)->content > tab[*start])
 		{
 			push_b(stack_a, stack_b);
 			if (*stack_b && (*stack_b)->next &&
 				(*stack_b)->content < (*stack_b)->next->content)
 				swap_b(stack_b);
 		}
-		else if ((*stack_a)->content <= *start)
+		else if ((*stack_a)->content <= tab[*start])
 		{
 			push_b(stack_a, stack_b);
 			rotate_b(stack_b);
 		}
-		else if ((*stack_a)->content > *end)
+		else /*if ((*stack_a)->content > tab[*end])*/
 			rotate_a(stack_a);
 		if (*end == size - 1)
 			(*start)++;
@@ -83,13 +86,30 @@ void	move_to_b(t_list **stack_a, t_list **stack_b, int *start, int *end)
 	}
 }
 
-void	sort_stack(t_list **stack_a, t_list **stack_b)
+void	fill_array(t_list *stack_a, int *tab)
+{
+	int	i;
+
+	i = 0;
+	while (stack_a)
+	{
+		tab[i] = stack_a->content;
+		stack_a = stack_a->next;
+		i++;
+	}
+}
+
+void	sort_stack(t_list **stack_a, t_list **stack_b, int numc)
 {
 	int	list_length;
 	int	chunk_size;
 	int	start;
 	int	end;
+	int	*tab;
 
+	tab = malloc(ft_lstsize(*stack_a));
+	fill_array(*stack_a, tab);
+	bubble_sort(tab, numc);
 	if (!stack_a || !*stack_a)
 		return ;
 	list_length = ft_lstsize(*stack_a);
@@ -105,6 +125,8 @@ void	sort_stack(t_list **stack_a, t_list **stack_b)
 		chunk_size = list_length / 16;
 	start = 0;
 	end = chunk_size;
-	move_to_b(stack_a, stack_b, &start, &end);
+	move_to_b(stack_a, stack_b, &start, &end, tab);
 	sort_back_to_a(stack_a, stack_b);
+	free(tab);
+	free_stack(stack_a);
 }
