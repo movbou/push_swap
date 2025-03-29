@@ -54,7 +54,7 @@ void	sort_back_to_a(t_list **stack_a, t_list **stack_b)
 
 void	increment_range(int *start, int *end, int size)
 {
-	if (*start < *end - 1)
+	if (*start < *end)
 		(*start)++;
 	if (*end < size - 1)
 		(*end)++;
