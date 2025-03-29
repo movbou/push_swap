@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 int	max_index(t_list *stack)
@@ -51,38 +52,46 @@ void	sort_back_to_a(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-void	move_to_b(t_list **stack_a, t_list **stack_b, int *start, int *end,
-		int *tab)
+void	increment_range(int *start, int *end, int size)
+{
+	if (*start < *end - 1)
+		(*start)++;
+	if (*end < size - 1)
+		(*end)++;
+}
+
+/*to change later make the start just inside the function start = 0 */
+void	move_to_b(t_list **stack_a, t_list **stack_b, int end, int *tab)
 {
 	int	size;
+	int	start;
 
+	start = 0;
 	if (!stack_a || !*stack_a)
 		return ;
 	size = ft_lstsize(*stack_a);
-	while (*start < size && ft_lstsize(*stack_a) > 0)
+	while (*stack_a)
 	{
-		if ((*stack_a)->content <= tab[*end]
-			&& (*stack_a)->content > tab[*start])
+		if ((*stack_a)->content <= tab[start])
 		{
 			push_b(stack_a, stack_b);
+			printf("\n");
+			rotate_b(stack_b);
+			printf("\n");
+			increment_range(&start, &end, size);
+		}
+		else if ((*stack_a)->content <= tab[end])
+		{
+			push_b(stack_a, stack_b);
+			printf("\n");
 			if (*stack_b && (*stack_b)->next &&
 				(*stack_b)->content < (*stack_b)->next->content)
 				swap_b(stack_b);
-		}
-		else if ((*stack_a)->content <= tab[*start])
-		{
-			push_b(stack_a, stack_b);
-			rotate_b(stack_b);
+			printf("\n");
+			increment_range(&start, &end, size);
 		}
 		else /*if ((*stack_a)->content > tab[*end])*/
 			rotate_a(stack_a);
-		if (*end == size - 1)
-			(*start)++;
-		else
-		{
-			(*start)++;
-			(*end)++;
-		}
 	}
 }
 
@@ -103,8 +112,6 @@ void	sort_stack(t_list **stack_a, t_list **stack_b, int numc)
 {
 	int	list_length;
 	int	chunk_size;
-	int	start;
-	int	end;
 	int	*tab;
 
 	tab = malloc(ft_lstsize(*stack_a));
@@ -123,9 +130,7 @@ void	sort_stack(t_list **stack_a, t_list **stack_b, int numc)
 	chunk_size = list_length / 5;
 	if (list_length >= 100)
 		chunk_size = list_length / 16;
-	start = 0;
-	end = chunk_size;
-	move_to_b(stack_a, stack_b, &start, &end, tab);
+	move_to_b(stack_a, stack_b, chunk_size, tab);
 	sort_back_to_a(stack_a, stack_b);
 	free(tab);
 	free_stack(stack_a);

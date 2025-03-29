@@ -66,5 +66,5 @@ void	push_a(t_list **stack_a, t_list **stack_b)
 void	push_b(t_list **stack_a, t_list **stack_b)
 {
 	push_head(stack_a, stack_b);
-	write(1, "pa", 2);
+	write(1, "pb", 2);
 }
