@@ -46,7 +46,4 @@ void	print_stack(t_list *stack)
 	}
 }
 
-int	peek(t_list *stack)
-{
-	return (stack->content);
-}
+
