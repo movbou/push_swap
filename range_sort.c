@@ -60,7 +60,6 @@ void	increment_range(int *start, int *end, int size)
 		(*end)++;
 }
 
-/*to change later make the start just inside the function start = 0 */
 void	move_to_b(t_list **stack_a, t_list **stack_b, int end, int *tab)
 {
 	int	size;
