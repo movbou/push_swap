@@ -13,6 +13,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+char				**ft_split(const char *s, char c);
 void				fill_array(t_list *stack_a, int *tab);
 int					*bubble_sort(int *array, int ac);
 void				free_stack(t_list **stack);

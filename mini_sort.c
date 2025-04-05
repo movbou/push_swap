@@ -1,4 +1,5 @@
 #include "push_swap.h"
+
 int	stack_min_data(t_list *copy)
 {
 	int	min;
@@ -58,7 +59,7 @@ void	sort_3(t_list **a)
 	else if (stack_min_data(*a) == (*a)->next->content)
 		swap_a(&(*a));
 	else if (stack_max_data(*a) == (*a)->next->content)
-			rrotate_a(a);
+		rrotate_a(a);
 }
 
 void	stack_push_min(int i, t_list **a, t_list **b)
@@ -158,4 +159,3 @@ void	mini_sort(t_list **stack_a, t_list **stack_b)
 	else if (size == 5)
 		sort_5(stack_a, stack_b);
 }
-
