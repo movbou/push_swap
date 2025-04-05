@@ -41,7 +41,7 @@ int	check_nbr(char *argv)
 		i++;
 	while (argv[i])
 	{
-		if (!ft_isdigit(argv[i])
+		if (!(argv[i]<='9' && argv[i]>= '0'))
 			return (0);
 		i++;
 	}
