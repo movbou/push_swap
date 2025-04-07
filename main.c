@@ -15,7 +15,7 @@ if (argc < 2)
 	return (0);
 check_error(argc, argv);
 s_fill(argv , argc , &stack_a);
-// sort_stack(&stack_a, &stack_b, argc);
+sort_stack(&stack_a, &stack_b, argc);
 print_stack(stack_a);
 free_stack(&stack_a);
 free_stack(&stack_b);
