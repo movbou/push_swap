@@ -54,9 +54,9 @@ void	sort_back_to_a(t_list **stack_a, t_list **stack_b)
 
 void	increment_range(int *start, int *end, int size)
 {
-	if (*start < *end)
+	if (*start < *end - 1)
 		(*start)++;
-	if (*end < size - 1)
+	if (*end < size)
 		(*end)++;
 }
 
@@ -115,6 +115,8 @@ void	sort_stack(t_list **stack_a, t_list **stack_b, int numc)
 
 
 	tab = malloc(ft_lstsize(*stack_a));
+	if(!tab)
+		return;
 	fill_array(*stack_a, tab);
 	bubble_sort(tab, numc);
 	list_length = ft_lstsize(*stack_a);
@@ -131,5 +133,4 @@ void	sort_stack(t_list **stack_a, t_list **stack_b, int numc)
 	move_to_b(stack_a, stack_b, chunk_size, tab);
 	sort_back_to_a(stack_a, stack_b);
 	free(tab);
-	free_stack(stack_a);
 }

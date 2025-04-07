@@ -26,20 +26,9 @@ int	ft_atoi(const char *str)
 }
 void	s_fill(char **argv, int argc, t_list **stack)
 {
-	char **holder;
-	int f = 0;
-	if (argc == 2){
-		holder = ft_split(argv[1], ' ');
-		argc = word_count(argv[1], ' ')+1;
-		f=1;
-	}
-	else
-	 holder = argv + 1;
 	argc=argc-2;
 	while (argc >= 0)
-		push(stack, ft_atoi(holder[argc--]));
-	if (f)
-		free_array(holder);
+		push(stack, ft_atoi(argv[argc--]));
 	
 }
 
