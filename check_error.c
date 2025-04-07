@@ -1,4 +1,17 @@
 #include "push_swap.h"
+char	**free_array(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		free(s[i]);
+		i++;
+	}
+	free(s);
+	return (NULL);
+}
 
 int	count_arg(char **array)
 {
@@ -48,7 +61,13 @@ int	check_nbr(char *argv)
 	return (1);
 }
 
-void	check_input(int argc, char **argv)
+void exit_error(void)
+{
+	write(1, "ERROR\n", 6);
+	exit (0);
+}
+
+void	check_error(int argc, char **argv)
 {
 	int		i;
 	long	tmp_argv;
@@ -63,13 +82,13 @@ void	check_input(int argc, char **argv)
 	{
 		tmp_argv = ft_atoi(tmp_array[i]);
 		if (tmp_argv < INT_MIN || tmp_argv > INT_MAX)
-			write(1, "ERROR", 1);
+			exit_error();
 		if (check_doubles(tmp_array))
-			write(1, "ERROR", 1);
+			exit_error();	
 		if (!check_nbr(tmp_array[i]))
-			write(1, "ERROR", 1);
+			exit_error();
 		i++;
 	}
 	if (argc == 2)
-		ft_free(tmp_array); //do this shit later
+		free_array(tmp_array);
 }

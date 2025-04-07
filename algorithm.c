@@ -113,17 +113,16 @@ void	sort_stack(t_list **stack_a, t_list **stack_b, int numc)
 	int	chunk_size;
 	int	*tab;
 
+
 	tab = malloc(ft_lstsize(*stack_a));
 	fill_array(*stack_a, tab);
 	bubble_sort(tab, numc);
-	if (!stack_a || !*stack_a)
-		return ;
 	list_length = ft_lstsize(*stack_a);
 	if (list_length <= 1)
 		return ;
 	if (list_length <= 5)
 	{
-		/*sort_small(stack_a, stack_b, list_length);*/
+		mini_sort(stack_a, stack_b);
 		return ;
 	}
 	chunk_size = list_length / 5;

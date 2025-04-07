@@ -19,7 +19,7 @@ size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 	dest[i] = 0;
 	return (srclen);
 }
-static int	word_count(const char *str, char c)
+int	word_count(const char *str, char c)
 {
 	int	count;
 	int	flag;

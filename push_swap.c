@@ -26,13 +26,21 @@ int	ft_atoi(const char *str)
 }
 void	s_fill(char **argv, int argc, t_list **stack)
 {
-	/*dima khchi hna null */
-	/*khask t8lbha hna lwl ghaikon hwa lakhr khas lwl ikon hwa lwl lfo9 fstack*/
-	if (!argv || !argc)
-		return ;
-	argc--;
+	char **holder;
+	int f = 0;
+	if (argc == 2){
+		holder = ft_split(argv[1], ' ');
+		argc = word_count(argv[1], ' ')+1;
+		f=1;
+	}
+	else
+	 holder = argv + 1;
+	argc=argc-2;
 	while (argc >= 0)
-		push(stack, ft_atoi(argv[argc--]));
+		push(stack, ft_atoi(holder[argc--]));
+	if (f)
+		free_array(holder);
+	
 }
 
 void	print_stack(t_list *stack)

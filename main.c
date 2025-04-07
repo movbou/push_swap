@@ -13,13 +13,9 @@ stack_a = NULL;
 stack_b = NULL;
 if (argc < 2)
 	return (0);
-if (!parse_arguments(argc, argv, &stack_a))
-{
-	write("error\n", 6);
-	free_stack(&stack_a);
-	return (1);
-}
-sort_stack(&stack_a, &stack_b, argc);
+check_error(argc, argv);
+s_fill(argv , argc , &stack_a);
+// sort_stack(&stack_a, &stack_b, argc);
 print_stack(stack_a);
 free_stack(&stack_a);
 free_stack(&stack_b);
