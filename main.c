@@ -22,7 +22,6 @@ int main(int argc, char *argv[]) {
   }
   check_error(argc, holder);
   s_fill(holder, argc, &stack_a);
-  printf("|%d|", argc);
   sort_stack(&stack_a, &stack_b, argc);
   print_stack(stack_a);
   free_stack(&stack_a);
