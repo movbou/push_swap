@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <stdio.h>
 #include <stdlib.h>
 
 int	max_index(t_list *stack)
@@ -30,12 +31,12 @@ void	sort_back_to_a(t_list **stack_a, t_list **stack_b)
 	while (*stack_b)
 	{
 		if (max_index(*stack_b) > (ft_lstsize(*stack_b) / 2))
-			while (max_index(*stack_b) != 0)
+			while (max_index(*stack_b))
 				rrotate(stack_b);
 		else
-			while (max_index(*stack_b) != 0)
+			while (max_index(*stack_b))
 				rotate(stack_b);
-		push_b(stack_b, stack_a);
+		push_a(stack_a, stack_b);
 	}
 }
 
@@ -43,7 +44,7 @@ void	increment_range(int *start, int *end, int size)
 {
 	if (*start < *end - 1)
 		(*start)++;
-	if (*end < size)
+	if (*end < size - 1)
 		(*end)++;
 }
 
