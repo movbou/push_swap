@@ -2,5 +2,5 @@ src =  algorithm.c check_error.c ft_split.c main.c mini_sort.c moves.c moves_fun
 
 all :
 	gcc $(src) -o push_swap
-# debug:	
-# 	gcc -ggdb $(src)
+fclean :
+	rm -f push_swap

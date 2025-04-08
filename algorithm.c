@@ -27,29 +27,15 @@ int	max_index(t_list *stack)
 
 void	sort_back_to_a(t_list **stack_a, t_list **stack_b)
 {
-	int	half_size_b;
-	int	max_idx;
-	int	i;
-
 	while (*stack_b)
 	{
-		half_size_b = ft_lstsize(*stack_b) / 2;
-		max_idx = max_index(*stack_b);
-		if (max_idx <= half_size_b)
-		{
-			i = max_idx;
-			while (i--){
-				rotate_b(stack_b);
-				}
-		}
+		if (max_index(*stack_b) > (ft_lstsize(*stack_b) / 2))
+			while (max_index(*stack_b) != 0)
+				rrotate(stack_b);
 		else
-		{
-			i = ft_lstsize(*stack_b) - max_idx;
-			while (i--){
-				rrotate_b(stack_b);
-			}
-		}
-		push_a(stack_a, stack_b);
+			while (max_index(*stack_b) != 0)
+				rotate(stack_b);
+		push_b(stack_b, stack_a);
 	}
 }
 
