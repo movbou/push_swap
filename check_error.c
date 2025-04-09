@@ -1,4 +1,5 @@
 #include "push_swap.h"
+
 char	**free_array(char **s)
 {
 	int	i;
@@ -83,10 +84,10 @@ void	check_error(int argc, char **argv)
 		tmp_argv = ft_atoi(tmp_array[i]);
 		if (tmp_argv < INT_MIN || tmp_argv > INT_MAX)
 			exit_error();
-		if (check_doubles(tmp_array))
-			exit_error();	
 		if (!check_nbr(tmp_array[i]))
 			exit_error();
+		if (check_doubles(tmp_array))
+			exit_error();	
 		i++;
 	}
 	if (argc == 2)

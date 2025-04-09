@@ -62,6 +62,15 @@ void	sort_3(t_list **a)
 		rrotate_a(a);
 }
 
+// 1 2 3 
+// 1 3 2 
+// 2 1 3 
+// 2 3 1 
+// 3 2 1 
+// 3 1 2 
+
+
+
 void	stack_push_min(int i, t_list **a, t_list **b)
 {
 	if (i == 0)

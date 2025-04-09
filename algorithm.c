@@ -32,11 +32,12 @@ void	sort_back_to_a(t_list **stack_a, t_list **stack_b)
 	{
 		if (max_index(*stack_b) > (ft_lstsize(*stack_b) / 2))
 			while (max_index(*stack_b))
-				rrotate(stack_b);
+				rrotate_b(stack_b);
 		else
 			while (max_index(*stack_b))
-				rotate(stack_b);
+				rotate_b(stack_b);
 		push_a(stack_a, stack_b);
+
 	}
 }
 
@@ -75,6 +76,7 @@ void	move_to_b(t_list **stack_a, t_list **stack_b, int end, int *tab)
 		}
 		else /*if ((*stack_a)->content > tab[*end])*/
 			rotate_a(stack_a);
+
 	}
 }
 
