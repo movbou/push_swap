@@ -1,4 +1,5 @@
 #include "push_swap.h"
+#include <limits.h>
 
 char	**free_array(char **s)
 {
@@ -55,17 +56,17 @@ int	check_nbr(char *argv)
 		i++;
 	while (argv[i])
 	{
-		if (!(argv[i]<='9' && argv[i]>= '0'))
+		if (!(argv[i] <= '9' && argv[i] >= '0'))
 			return (0);
 		i++;
 	}
 	return (1);
 }
 
-void exit_error(void)
+void	exit_error(void)
 {
-	write(1, "ERROR\n", 6);
-	exit (0);
+	write(2, "ERROR\n", 6);
+	exit(0);
 }
 
 void	check_error(int argc, char **argv)
@@ -87,7 +88,7 @@ void	check_error(int argc, char **argv)
 		if (!check_nbr(tmp_array[i]))
 			exit_error();
 		if (check_doubles(tmp_array))
-			exit_error();	
+			exit_error();
 		i++;
 	}
 	if (argc == 2)

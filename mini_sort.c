@@ -2,164 +2,148 @@
 
 int	stack_min_data(t_list *copy)
 {
-	int	min;
+	int		min;
+	t_list	*current;
 
+	if (!copy)
+		return (0);
 	min = copy->content;
-	while (copy->next != NULL)
+	current = copy;
+	while (current)
 	{
-		if (copy->next->content < min)
-			min = copy->next->content;
-		copy = copy->next;
+		if (current->content < min)
+			min = current->content;
+		current = current->next;
 	}
 	return (min);
 }
 
 int	stack_max_data(t_list *copy)
 {
-	int	max;
+	int		max;
+	t_list	*current;
 
+	if (!copy)
+		return (0);
 	max = copy->content;
-	while (copy->next != NULL)
+	current = copy;
+	while (current)
 	{
-		if (copy->next->content > max)
-			max = copy->next->content;
-		copy = copy->next;
+		if (current->content > max)
+			max = current->content;
+		current = current->next;
 	}
 	return (max);
 }
 
-int	stack_min_position(t_list *stack, int min)
+int	stack_find_position(t_list *stack, int value)
 {
-	int	i;
+	int	pos;
 
-	i = 0;
-	while (stack->next != NULL)
+	if (!stack)
+		return (-1);
+	pos = 0;
+	while (stack)
 	{
-		if (min == stack->content)
-			break ;
-		i++;
+		if (stack->content == value)
+			return (pos);
 		stack = stack->next;
+		pos++;
 	}
-	return (i);
+	return (-1);
 }
 
 void	sort_3(t_list **a)
 {
-	if (stack_min_data(*a) == (*a)->content)
+	int	first;
+	int	second;
+	int	third;
+
+	if (!a || !*a || !(*a)->next || !(*a)->next->next)
+		return ;
+	first = (*a)->content;
+	second = (*a)->next->content;
+	third = (*a)->next->next->content;
+	if (first > second && second > third)
 	{
-		swap_a(&(*a));
-		rotate_a(&(*a));
+		swap_a(a);
+		rrotate_a(a);
 	}
-	else if (stack_max_data(*a) == (*a)->content)
+	else if (first > second && first > third)
+		rotate_a(a);
+	else if (first > second)
+		swap_a(a);
+	else if (second > third && first < third)
 	{
-		rotate_a(&(*a));
-		if (check_list_sorted(*a) == 1)
-			swap_a(&(*a));
+		swap_a(a);
+		rotate_a(a);
 	}
-	else if (stack_min_data(*a) == (*a)->next->content)
-		swap_a(&(*a));
-	else if (stack_max_data(*a) == (*a)->next->content)
+	else if (second > third)
 		rrotate_a(a);
 }
 
-// 1 2 3 
-// 1 3 2 
-// 2 1 3 
-// 2 3 1 
-// 3 2 1 
-// 3 1 2 
-
-
-
-void	stack_push_min(int i, t_list **a, t_list **b)
+void	push_smallest_to_b(t_list **a, t_list **b)
 {
-	if (i == 0)
-		push_b((&(*a)), (&(*b)));
-	else if (i == 1)
-	{
-		swap_a(&(*a));
-		push_b((&(*a)), (&(*b)));
-	}
-	else if (i == 2)
-	{
-		rotate_a(&(*a));
-		rotate_a(&(*a));
-		push_b((&(*a)), (&(*b)));
-	}
-	else if (i == 3)
-	{
-		rrotate_a(&(*a));
-		push_b((&(*a)), (&(*b)));
-	}
-}
+	int	min;
+	int	pos;
+	int	size;
 
-void	stack_push_5min(int i, t_list **a, t_list **b)
-{
-	if (i == 0)
-		push_b((&(*a)), (&(*b)));
-	else if (i == 1)
+	if (!a || !*a || !b)
+		return ;
+	min = stack_min_data(*a);
+	pos = stack_find_position(*a, min);
+	size = ft_lstsize(*a);
+	if (pos <= size / 2)
 	{
-		swap_a(&(*a));
-		push_b((&(*a)), (&(*b)));
+		while (pos > 0)
+		{
+			rotate_a(a);
+			pos--;
+		}
 	}
-	else if (i == 2)
+	else
 	{
-		rotate_a(&(*a));
-		rotate_a(&(*a));
-		push_b((&(*a)), (&(*b)));
+		while (pos < size)
+		{
+			rrotate_a(a);
+			pos++;
+		}
 	}
-	else if (i == 3)
-	{
-		rrotate_a(&(*a));
-		rrotate_a(&(*a));
-		push_b((&(*a)), (&(*b)));
-	}
-	else if (i == 4)
-	{
-		rrotate_a(&(*a));
-		push_b((&(*a)), (&(*b)));
-	}
+	push_b(a, b);
 }
 
 void	sort_4(t_list **a, t_list **b)
 {
-	int	index;
-
-	index = stack_min_position((*a), stack_min_data(*a));
-	stack_push_min(index, &(*a), &(*b));
-	if (check_list_sorted(*a) == 0)
-		push_a(&(*a), &(*b));
-	else
-	{
-		sort_3(&(*a));
-		push_a(&(*a), &(*b));
-	}
+	if (!a || !*a || !b || ft_lstsize(*a) != 4)
+		return ;
+	push_smallest_to_b(a, b);
+	sort_3(a);
+	push_a(a, b);
 }
 
 void	sort_5(t_list **a, t_list **b)
 {
-	int	index;
-
-	index = stack_min_position((*a), stack_min_data(*a));
-	stack_push_5min(index, &(*a), &(*b));
-	if (check_list_sorted(*a) == 0)
-		push_a(&(*a), &(*b));
-	else
-	{
-		sort_4((&(*a)), (&(*b)));
-		push_a(&(*a), &(*b));
-	}
+	if (!a || !*a || !b || ft_lstsize(*a) != 5)
+		return ;
+	push_smallest_to_b(a, b);
+	push_smallest_to_b(a, b);
+	sort_3(a);
+	push_a(a, b);
+	push_a(a, b);
 }
 
 void	mini_sort(t_list **stack_a, t_list **stack_b)
 {
 	int	size;
 
-	if (check_list_sorted(*stack_a) || ft_lstsize(*stack_a) == 0
-		|| ft_lstsize(*stack_a) == 1)
+	if (!stack_a || !*stack_a || !stack_b)
+		return ;
+	if (check_list_sorted(*stack_a))
 		return ;
 	size = ft_lstsize(*stack_a);
-	if (size == 2)
+	if (size <= 1)
+		return ;
+	else if (size == 2)
 		swap_a(stack_a);
 	else if (size == 3)
 		sort_3(stack_a);

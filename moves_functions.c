@@ -24,7 +24,7 @@ void	push_head(t_list **stack_a, t_list **stack_b)
 	first_node_a = *stack_a;
 	second_node_a = (*stack_a)->next;
 	(*stack_a)->next = *stack_b;
-	*stack_b = first_node_a; 
+	*stack_b = first_node_a;
 	*stack_a = second_node_a;
 }
 

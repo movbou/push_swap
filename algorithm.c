@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 int	max_index(t_list *stack)
@@ -37,7 +36,6 @@ void	sort_back_to_a(t_list **stack_a, t_list **stack_b)
 			while (max_index(*stack_b))
 				rotate_b(stack_b);
 		push_a(stack_a, stack_b);
-
 	}
 }
 
@@ -76,7 +74,6 @@ void	move_to_b(t_list **stack_a, t_list **stack_b, int end, int *tab)
 		}
 		else /*if ((*stack_a)->content > tab[*end])*/
 			rotate_a(stack_a);
-
 	}
 }
 
@@ -99,10 +96,9 @@ void	sort_stack(t_list **stack_a, t_list **stack_b, int numc)
 	int	chunk_size;
 	int	*tab;
 
-
-	tab = malloc(ft_lstsize(*stack_a)*sizeof(int));
-	if(!tab)
-		return;
+	tab = malloc(ft_lstsize(*stack_a) * sizeof(int));
+	if (!tab)
+		return ;
 	fill_array(*stack_a, tab);
 	bubble_sort(tab, numc);
 	list_length = ft_lstsize(*stack_a);

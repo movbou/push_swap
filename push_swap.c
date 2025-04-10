@@ -1,7 +1,16 @@
 #include "push_swap.h"
+#include <limits.h>
 #include <stdio.h>
 
-int	ft_atoi(const char *str)
+static long	check_overflow(int m)
+{
+	if (m == 1)
+		return (LONG_MIN);
+	else
+		return (LONG_MAX);
+}
+
+long	ft_atoi(const char *str)
 {
 	int		i;
 	long	n;
@@ -20,16 +29,17 @@ int	ft_atoi(const char *str)
 	}
 	while (str[i] >= '0' && str[i] <= '9')
 	{
+		if (n > (LONG_MAX - (str[i] - '0')) / 10)
+			return (check_overflow(m));
 		n = (n * 10) + (str[i++] - 48);
 	}
 	return (n * m);
 }
 void	s_fill(char **argv, int argc, t_list **stack)
 {
-	argc=argc-2;
+	argc = argc - 2;
 	while (argc >= 0)
 		push(stack, ft_atoi(argv[argc--]));
-	
 }
 
 void	print_stack(t_list *stack)
@@ -42,5 +52,3 @@ void	print_stack(t_list *stack)
 		stack = stack->next;
 	}
 }
-
-
