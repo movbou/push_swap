@@ -110,8 +110,11 @@ void	sort_stack(t_list **stack_a, t_list **stack_b, int numc)
 		return ;
 	}
 	chunk_size = list_length / 5;
-	if (list_length >= 100)
-		chunk_size = list_length / 16;
+	if (list_length == 100)
+		chunk_size = list_length / 11;
+	if (list_length > 100)
+		chunk_size = list_length / 17;
+
 	move_to_b(stack_a, stack_b, chunk_size, tab);
 	sort_back_to_a(stack_a, stack_b);
 	free(tab);
