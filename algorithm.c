@@ -53,8 +53,6 @@ void	move_to_b(t_list **stack_a, t_list **stack_b, int end, int *tab)
 	int	start;
 
 	start = 0;
-	if (!stack_a || !*stack_a)
-		return ;
 	size = ft_lstsize(*stack_a);
 	while (*stack_a)
 	{
@@ -67,8 +65,8 @@ void	move_to_b(t_list **stack_a, t_list **stack_b, int end, int *tab)
 		else if ((*stack_a)->content <= tab[end])
 		{
 			push_b(stack_a, stack_b);
-			if (*stack_b && (*stack_b)->next &&
-				(*stack_b)->content < (*stack_b)->next->content)
+			if (*stack_b && (*stack_b)->next
+				&& (*stack_b)->content < (*stack_b)->next->content)
 				swap_b(stack_b);
 			increment_range(&start, &end, size);
 		}
@@ -89,6 +87,29 @@ void	fill_array(t_list *stack_a, int *tab)
 		i++;
 	}
 }
+int	set_range(int list_length)
+{
+	int	chunk_size;
+
+	chunk_size = list_length / 5;
+	if (list_length == 100)
+		chunk_size = list_length / 11;
+	if (list_length > 100)
+		chunk_size = list_length / 17;
+	return (chunk_size);
+}
+
+int	*init_tab(t_list **stack_a, int numc)
+{
+	int	*tab;
+
+	tab = malloc(ft_lstsize(*stack_a) * sizeof(int));
+	if (!tab)
+		return (NULL);
+	fill_array(*stack_a, tab);
+	bubble_sort(tab, numc);
+	return (tab);
+}
 
 void	sort_stack(t_list **stack_a, t_list **stack_b, int numc)
 {
@@ -96,25 +117,20 @@ void	sort_stack(t_list **stack_a, t_list **stack_b, int numc)
 	int	chunk_size;
 	int	*tab;
 
-	tab = malloc(ft_lstsize(*stack_a) * sizeof(int));
-	if (!tab)
-		return ;
-	fill_array(*stack_a, tab);
-	bubble_sort(tab, numc);
+	tab = init_tab(stack_a, numc);
 	list_length = ft_lstsize(*stack_a);
 	if (list_length <= 1)
+	{
+		free(tab);
 		return ;
+	}
 	if (list_length <= 5)
 	{
 		mini_sort(stack_a, stack_b);
+		free(tab);
 		return ;
 	}
-	chunk_size = list_length / 5;
-	if (list_length == 100)
-		chunk_size = list_length / 11;
-	if (list_length > 100)
-		chunk_size = list_length / 17;
-
+	chunk_size = set_range(list_length);
 	move_to_b(stack_a, stack_b, chunk_size, tab);
 	sort_back_to_a(stack_a, stack_b);
 	free(tab);

@@ -1,7 +1,15 @@
 #include "push_swap.h"
 #include <stdio.h>
-#include <unistd.h>
 
+char	**string_handle(int *argc, char **argv, int *f)
+{
+	char	**holder;
+
+	holder = ft_split(argv[1], ' ');
+	*argc = word_count(argv[1], ' ') + 1;
+	*f = 1;
+	return (holder);
+}
 int	main(int argc, char *argv[])
 {
 	t_list	*stack_a;
@@ -17,14 +25,9 @@ int	main(int argc, char *argv[])
 		return (0);
 	holder = argv + 1;
 	if (argc == 2)
-	{
-		holder = ft_split(argv[1], ' ');
-		argc = word_count(argv[1], ' ') + 1;
-		f = 1;
-	}
+		holder = string_handle(&argc, argv, &f);
 	s_fill(holder, argc, &stack_a);
 	sort_stack(&stack_a, &stack_b, argc);
-	/*print_stack(stack_a);*/
 	free_stack(&stack_a);
 	if (f)
 		free_array(holder);
