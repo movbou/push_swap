@@ -1,6 +1,6 @@
 #include "push_swap.h"
 #include <stdio.h>
-
+ 
 char	**string_handle(int *argc, char **argv, int *f)
 {
 	char	**holder;
@@ -21,9 +21,9 @@ int	main(int argc, char *argv[])
 	f = 0;
 	stack_a = NULL;
 	stack_b = NULL;
-	check_error(argc, argv);
 	if (argc < 2)
 		return (0);
+	check_error(argc, argv);
 	holder = argv + 1;
 	if (argc == 2)
 		holder = string_handle(&argc, argv, &f);
