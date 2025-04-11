@@ -44,7 +44,6 @@ void				push(t_list **lst, int content);
 long				ft_atoi(const char *str);
 int					check_list_sorted(t_list *stack);
 void				s_fill(char **argv, int argc, t_list **stack);
-static long			check_overflow(int m);
 void				swap_first_2elements(t_list **stack);
 void				push_head(t_list **stack_a, t_list **stack_b);
 void				rrotate(t_list **stack);
