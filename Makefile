@@ -1,5 +1,4 @@
-src =  algorithm.c check_error.c ft_split.c main.c mini_sort.c moves.c moves_functions.c push_swap.c sorting.c utils.c
-
+src = algorithm.c check_error.c ft_split.c main.c mini_sort.c moves_functions.c push_swap.c push_swap_moves.c r_rotate.c sorting_helpers.c utils.c
 all :
 	gcc -ggdb $(src) -o push_swap
 fclean :

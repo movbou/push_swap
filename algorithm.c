@@ -1,29 +1,6 @@
 #include "push_swap.h"
 #include <stdlib.h>
 
-int	max_index(t_list *stack)
-{
-	int	i;
-	int	max_index_holder;
-	int	holder_of_max;
-
-	if (!stack)
-		return (-1);
-	max_index_holder = 0;
-	i = 0;
-	holder_of_max = stack->content;
-	while (stack)
-	{
-		if (holder_of_max < stack->content)
-		{
-			holder_of_max = stack->content;
-			max_index_holder = i;
-		}
-		stack = stack->next;
-		i++;
-	}
-	return (max_index_holder);
-}
 
 void	sort_back_to_a(t_list **stack_a, t_list **stack_b)
 {
@@ -37,14 +14,6 @@ void	sort_back_to_a(t_list **stack_a, t_list **stack_b)
 				rotate_b(stack_b);
 		push_a(stack_a, stack_b);
 	}
-}
-
-void	increment_range(int *start, int *end, int size)
-{
-	if (*start < *end - 1)
-		(*start)++;
-	if (*end < size - 1)
-		(*end)++;
 }
 
 void	move_to_b(t_list **stack_a, t_list **stack_b, int end, int *tab)
@@ -75,18 +44,6 @@ void	move_to_b(t_list **stack_a, t_list **stack_b, int end, int *tab)
 	}
 }
 
-void	fill_array(t_list *stack_a, int *tab)
-{
-	int	i;
-
-	i = 0;
-	while (stack_a)
-	{
-		tab[i] = stack_a->content;
-		stack_a = stack_a->next;
-		i++;
-	}
-}
 int	set_range(int list_length)
 {
 	int	chunk_size;

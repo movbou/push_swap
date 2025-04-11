@@ -52,3 +52,27 @@ void	print_stack(t_list *stack)
 		stack = stack->next;
 	}
 }
+
+int	max_index(t_list *stack)
+{
+	int	i;
+	int	max_index_holder;
+	int	holder_of_max;
+
+	if (!stack)
+		return (-1);
+	max_index_holder = 0;
+	i = 0;
+	holder_of_max = stack->content;
+	while (stack)
+	{
+		if (holder_of_max < stack->content)
+		{
+			holder_of_max = stack->content;
+			max_index_holder = i;
+		}
+		stack = stack->next;
+		i++;
+	}
+	return (max_index_holder);
+}

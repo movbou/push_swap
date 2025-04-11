@@ -1,5 +1,14 @@
 #include "push_swap.h"
 
+void	increment_range(int *start, int *end, int size)
+{
+	if (*start < *end - 1)
+		(*start)++;
+	if (*end < size - 1)
+		(*end)++;
+}
+
+
 int	*bubble_sort(int *array, int ac)
 {
 	int	i;

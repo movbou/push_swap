@@ -12,6 +12,7 @@ typedef struct s_list {
   struct s_list *next;
 } t_list;
 
+void	increment_range(int *start, int *end, int size);
 int	word_count(const char *str, char c);
 char	**free_array(char **s);
 void	mini_sort(t_list **stack_a, t_list **stack_b);

@@ -1,5 +1,19 @@
 #include "push_swap.h"
 
+void	push(t_list **lst, int content)
+{
+	t_list	*node;
+
+	if (!lst)
+	{
+		return ;
+	}
+	node = ft_lstnew(content);
+	node->content = content;
+	node->next = *lst;
+	*lst = node;
+}
+
 void	swap_first_2elements(t_list **stack)
 {
 	t_list	*temp;
