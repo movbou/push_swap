@@ -1,30 +1,6 @@
 #include "push_swap.h"
 #include <limits.h>
 
-char	**free_array(char **s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		free(s[i]);
-		i++;
-	}
-	free(s);
-	return (NULL);
-}
-
-int	count_arg(char **array)
-{
-	int	i;
-
-	i = 0;
-	while (array[i])
-		i++;
-	return (i);
-}
-
 int	check_doubles(char **argv)
 {
 	int	i;

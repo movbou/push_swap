@@ -1,19 +1,6 @@
 #include "push_swap.h"
 #include <stdlib.h>
 
-void	fill_array(t_list *stack_a, int *tab)
-{
-	int	i;
-
-	i = 0;
-	while (stack_a)
-	{
-		tab[i] = stack_a->content;
-		stack_a = stack_a->next;
-		i++;
-	}
-}
-
 void	free_stack(t_list **stack)
 {
 	t_list	*temp;
@@ -27,6 +14,20 @@ void	free_stack(t_list **stack)
 		*stack = temp;
 	}
 	*stack = NULL;
+}
+
+char	**free_array(char **s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		free(s[i]);
+		i++;
+	}
+	free(s);
+	return (NULL);
 }
 
 t_list	*ft_lstlast(t_list *lst)
@@ -49,7 +50,6 @@ t_list	*ft_lstnew(int content)
 	node->next = NULL;
 	return (node);
 }
-
 
 int	ft_lstsize(t_list *lst)
 {

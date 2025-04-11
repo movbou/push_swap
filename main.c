@@ -10,6 +10,7 @@ char	**string_handle(int *argc, char **argv, int *f)
 	*f = 1;
 	return (holder);
 }
+
 int	main(int argc, char *argv[])
 {
 	t_list	*stack_a;

@@ -1,6 +1,14 @@
 #include "push_swap.h"
-#include <limits.h>
-#include <stdio.h>
+
+int	count_arg(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+		i++;
+	return (i);
+}
 
 static long	check_overflow(int m)
 {
@@ -35,6 +43,7 @@ long	ft_atoi(const char *str)
 	}
 	return (n * m);
 }
+
 void	s_fill(char **argv, int argc, t_list **stack)
 {
 	argc = argc - 2;

@@ -1,58 +1,5 @@
 #include "push_swap.h"
 
-int	stack_min_data(t_list *copy)
-{
-	int		min;
-	t_list	*current;
-
-	if (!copy)
-		return (0);
-	min = copy->content;
-	current = copy;
-	while (current)
-	{
-		if (current->content < min)
-			min = current->content;
-		current = current->next;
-	}
-	return (min);
-}
-
-int	stack_max_data(t_list *copy)
-{
-	int		max;
-	t_list	*current;
-
-	if (!copy)
-		return (0);
-	max = copy->content;
-	current = copy;
-	while (current)
-	{
-		if (current->content > max)
-			max = current->content;
-		current = current->next;
-	}
-	return (max);
-}
-
-int	stack_find_position(t_list *stack, int value)
-{
-	int	pos;
-
-	if (!stack)
-		return (-1);
-	pos = 0;
-	while (stack)
-	{
-		if (stack->content == value)
-			return (pos);
-		stack = stack->next;
-		pos++;
-	}
-	return (-1);
-}
-
 void	sort_3(t_list **a)
 {
 	int	first;
@@ -88,8 +35,6 @@ void	push_smallest_to_b(t_list **a, t_list **b)
 	int	pos;
 	int	size;
 
-	if (!a || !*a || !b)
-		return ;
 	min = stack_min_data(*a);
 	pos = stack_find_position(*a, min);
 	size = ft_lstsize(*a);

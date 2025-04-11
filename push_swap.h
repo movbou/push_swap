@@ -13,6 +13,10 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+int					stack_find_position(t_list *stack, int value);
+int					stack_min_data(t_list *copy);
+int					count_arg(char **array);
+char				**free_array(char **s);
 void				increment_range(int *start, int *end, int size);
 int					word_count(const char *str, char c);
 char				**free_array(char **s);
@@ -22,7 +26,6 @@ char				**ft_split(const char *s, char c);
 void				fill_array(t_list *stack_a, int *tab);
 int					*bubble_sort(int *array, int ac);
 void				free_stack(t_list **stack);
-void				rotate_a(t_list **stack_a);
 int					max_index(t_list *stack);
 void				sort_back_to_a(t_list **stack_a, t_list **stack_b);
 void				move_to_b(t_list **stack_a, t_list **stack_b, int end,

@@ -1,6 +1,4 @@
 #include "push_swap.h"
-#include <stdlib.h>
-
 
 void	sort_back_to_a(t_list **stack_a, t_list **stack_b)
 {
@@ -39,7 +37,7 @@ void	move_to_b(t_list **stack_a, t_list **stack_b, int end, int *tab)
 				swap_b(stack_b);
 			increment_range(&start, &end, size);
 		}
-		else /*if ((*stack_a)->content > tab[*end])*/
+		else
 			rotate_a(stack_a);
 	}
 }

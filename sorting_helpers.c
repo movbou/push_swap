@@ -8,7 +8,6 @@ void	increment_range(int *start, int *end, int size)
 		(*end)++;
 }
 
-
 int	*bubble_sort(int *array, int ac)
 {
 	int	i;
