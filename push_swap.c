@@ -42,17 +42,6 @@ void	s_fill(char **argv, int argc, t_list **stack)
 		push(stack, ft_atoi(argv[argc--]));
 }
 
-void	print_stack(t_list *stack)
-{
-	if (!stack)
-		return ;
-	while (stack)
-	{
-		printf("%d\n", stack->content);
-		stack = stack->next;
-	}
-}
-
 int	max_index(t_list *stack)
 {
 	int	i;
