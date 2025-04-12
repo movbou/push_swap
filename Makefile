@@ -3,10 +3,10 @@ CFLAGS = -g -Wall -Wextra -Werror
 NAME = push_swap
 BONUS = checker
 
-SRCS = algorithm.c check_error.c ft_split.c main.c mini_sort.c moves_functions.c push_swap.c push_swap_moves.c r_rotate.c sorting_helpers.c utils.c mini_sort_helper.c
+SRCS = algorithm.c check_error.c ft_split.c main.c mini_sort.c moves_functions.c utils2.c push_swap_moves.c r_rotate.c sorting_helpers.c utils.c mini_sort_helper.c
 OBJS =$(SRCS:.c=.o) 
 
-BONUS_SRCS = check_error.c ft_split.c checker.c moves_functions.c push_swap.c sorting_helpers.c utils.c checker_helper.c
+BONUS_SRCS = check_error.c ft_split.c checker.c moves_functions.c utils2.c sorting_helpers.c utils.c checker_helper.c
 BONUS_OBJS =$(BONUS_SRCS:.c=.o)
 
 all:  $(NAME) $(BONUS)
