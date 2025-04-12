@@ -9,7 +9,7 @@ OBJS =$(SRCS:.c=.o)
 BONUS_SRCS = check_error.c ft_split.c checker.c moves_functions.c push_swap.c sorting_helpers.c utils.c checker_helper.c
 BONUS_OBJS =$(BONUS_SRCS:.c=.o)
 
-all:  $(NAME)
+all:  $(NAME) $(BONUS)
 bonus: $(BONUS)
 
 $(NAME): $(OBJS)
