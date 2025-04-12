@@ -13,6 +13,9 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+int					ft_strcmp(char *s1, char *s2);
+int					read_input(char *move);
+int					is_valid(char **argv, int ac);
 int					stack_find_position(t_list *stack, int value);
 int					stack_min_data(t_list *copy);
 int					count_arg(char **array);
