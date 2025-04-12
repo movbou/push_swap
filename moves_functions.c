@@ -18,7 +18,7 @@ void	swap_first_2elements(t_list **stack)
 {
 	t_list	*temp;
 
-	if (!stack)
+	if (!stack || !*stack || !(*stack)->next)
 	{
 		return ;
 	}
@@ -33,7 +33,7 @@ void	push_head(t_list **stack_a, t_list **stack_b)
 	t_list	*second_node_a;
 	t_list	*first_node_a;
 
-	if (!stack_a || !stack_b)
+	if (!stack_a || !stack_b || !*stack_a)
 		return ;
 	first_node_a = *stack_a;
 	second_node_a = (*stack_a)->next;
