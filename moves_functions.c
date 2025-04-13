@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   moves_functions.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achajar <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/13 09:15:43 by achajar           #+#    #+#             */
+/*   Updated: 2025/04/13 09:15:48 by achajar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	push(t_list **lst, int content)
@@ -30,16 +42,14 @@ void	swap_first_2elements(t_list **stack)
 
 void	push_head(t_list **stack_a, t_list **stack_b)
 {
-	t_list	*second_node_a;
 	t_list	*first_node_a;
 
 	if (!stack_a || !stack_b || !*stack_a)
 		return ;
 	first_node_a = *stack_a;
-	second_node_a = (*stack_a)->next;
-	(*stack_a)->next = *stack_b;
+	*stack_a = (*stack_a)->next;
+	first_node_a->next = *stack_b;
 	*stack_b = first_node_a;
-	*stack_a = second_node_a;
 }
 
 void	rotate(t_list **stack)

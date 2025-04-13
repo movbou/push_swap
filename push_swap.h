@@ -1,6 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achajar <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/13 09:13:40 by achajar           #+#    #+#             */
+/*   Updated: 2025/04/13 09:13:52 by achajar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#ifndef PUSH_SWAP
-# define PUSH_SWAP
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 # include <limits.h>
 # include <stddef.h>
 # include <stdio.h>
@@ -16,6 +27,7 @@ typedef struct s_list
 void				check_and_reverse_if_needed(t_list **stack_a,
 						t_list **stack_b);
 int					ft_strcmp(char *s1, char *s2);
+void				exit_error(void);
 int					read_input(char *move);
 int					is_valid(char **argv, int ac);
 int					stack_find_position(t_list *stack, int value);

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achajar <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/04/13 09:14:24 by achajar           #+#    #+#             */
+/*   Updated: 2025/04/13 09:14:26 by achajar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	handle_swap_and_push(t_list **stack_a, t_list **stack_b, char *move)
@@ -64,6 +76,7 @@ int	main(int argc, char **argv)
 		return (0);
 	stack_a = NULL;
 	stack_b = NULL;
+	check_error(argc, argv);
 	if (!is_valid(argv, argc))
 		return (1);
 	s_fill(++argv, argc, &stack_a);
