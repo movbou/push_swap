@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include <stdio.h>
 
 int	handle_swap_and_push(t_list **stack_a, t_list **stack_b, char *move)
 {

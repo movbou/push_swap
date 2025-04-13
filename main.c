@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include <stdio.h>
 
 int	should_reverse_stack(t_list *stack)
 {
@@ -36,6 +35,7 @@ void	check_and_reverse_if_needed(t_list **stack_a, t_list **stack_b)
 		}
 	}
 }
+
 char	**string_handle(int *argc, char **argv, int *f)
 {
 	char	**holder;
@@ -64,7 +64,6 @@ int	main(int argc, char *argv[])
 		holder = string_handle(&argc, argv, &f);
 	s_fill(holder, argc, &stack_a);
 	sort_stack(&stack_a, &stack_b, argc);
-	// ft_print_list(stack_a);
 	free_stack(&stack_a);
 	if (f)
 		free_array(holder);

@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include <limits.h>
 
 int	check_doubles(char **argv)
 {

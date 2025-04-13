@@ -1,5 +1,4 @@
 #include "push_swap.h"
-#include <unistd.h>
 
 void	swap_a(t_list **stack_a)
 {
