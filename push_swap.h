@@ -13,6 +13,8 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+void				check_and_reverse_if_needed(t_list **stack_a,
+						t_list **stack_b);
 int					ft_strcmp(char *s1, char *s2);
 int					read_input(char *move);
 int					is_valid(char **argv, int ac);
