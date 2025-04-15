@@ -97,7 +97,9 @@ void	sort_stack(t_list **stack_a, t_list **stack_b, int numc)
 		free(tab);
 		return ;
 	}
-	check_and_reverse_if_needed(stack_a, stack_b);
+	if(check_and_reverse_if_needed(stack_a, stack_b), check_list_sorted(*stack_a))
+		return (free(tab));
+
 	chunk_size = set_range(list_length);
 	move_to_b(stack_a, stack_b, chunk_size, tab);
 	sort_back_to_a(stack_a, stack_b);

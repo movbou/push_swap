@@ -12,6 +12,11 @@
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1
+# endif
+
 # include <limits.h>
 # include <stddef.h>
 # include <stdio.h>
@@ -67,5 +72,13 @@ void				rrotate(t_list **stack);
 void				rotate(t_list **stack);
 t_list				*ft_lstnew(int content);
 t_list				*ft_lstlast(t_list *lst);
+
+char				*ft_strchr(const char *s, int c);
+size_t				ft_strlen(const char *s);
+char				*ft_strjoin(char *s1, char *s2);
+char				*ft_get_lstr(int fd, char *lstr);
+char				*ft_get_line(char *lstr);
+char				*ft_reset_lstr(char *lstr);
+char				*get_next_line(int fd);
 
 #endif

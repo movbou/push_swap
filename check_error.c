@@ -70,8 +70,7 @@ char	**init_check_error(int argc, char **argv)
 		tmp_array = argv + 1;
 	if (!tmp_array || !tmp_array[0])
 	{
-		free_array(tmp_array);
-		exit_error();
+		exit(0);
 	}
 	return (tmp_array);
 }

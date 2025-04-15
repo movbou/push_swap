@@ -11,6 +11,8 @@
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 int	handle_swap_and_push(t_list **stack_a, t_list **stack_b, char *move)
 {
@@ -60,38 +62,56 @@ int	handle_rotations(t_list **stack_a, t_list **stack_b, char *move)
 int	do_move(t_list **stack_a, t_list **stack_b, char *move)
 {
 	if (handle_swap_and_push(stack_a, stack_b, move))
-		return (1);
+		return (0);
 	if (handle_rotations(stack_a, stack_b, move))
-		return (1);
-	return (write(2, "Error\n", 6), 0);
+		return (0);
+	return (1);
+}
+
+int	operation_checker(t_list **a, t_list **b)
+{
+	char	*line;
+
+	line = get_next_line(0);
+	while (line)
+	{
+		if (do_move(a, b, line))
+		{
+			free_stack(a);
+			free_stack(b);
+			free(line);
+			return (0);
+		}
+		free(line);
+		line = get_next_line(0);
+	}
+	return (1);
 }
 
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
-	char	move[4];
 
-	if (argc == 1)
-		return (0);
 	stack_a = NULL;
 	stack_b = NULL;
-	check_error(argc, argv);
+	if (argc == 1)
+		return (0);
 	if (!is_valid(argv, argc))
 		return (1);
 	s_fill(++argv, argc, &stack_a);
-	while (1)
-	{
-		if (!read_input(move))
-			break ;
-		if (!do_move(&stack_a, &stack_b, move))
-			return (free_stack(&stack_a), free_stack(&stack_b), 1);
-	}
-	if (check_list_sorted(stack_a) && !stack_b)
-		write(1, "OK\n", 3);
+	if (!argv[1][0] || argv[1][0] == '\0')
+		exit_error();
+	check_error(argc, argv);
+	if (operation_checker(&stack_a, &stack_b) == 0)
+		exit_error();
 	else
-		write(1, "KO\n", 3);
+	{
+		if (check_list_sorted(stack_a) && !stack_b)
+			write(1, "OK\n", 3);
+		else
+			write(1, "KO\n", 3);
+	}
 	free_stack(&stack_a);
 	free_stack(&stack_b);
-	return (0);
 }
