@@ -92,19 +92,23 @@ int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
+	int		f;
+	char	**holder;
 
+	f = 0;
 	stack_a = NULL;
 	stack_b = NULL;
 	if (argc == 1)
 		return (0);
-	if (!is_valid(argv, argc))
-		return (1);
-	s_fill(++argv, argc, &stack_a);
-	if (!argv[1][0] || argv[1][0] == '\0')
-		exit_error();
 	check_error(argc, argv);
-	if (operation_checker(&stack_a, &stack_b) == 0)
-		exit_error();
+	holder = argv + 1;
+	if (argc == 2)
+		holder = string_handle(&argc, argv, &f);
+	if (!is_valid(holder, argc))
+		return (1);
+	s_fill(holder, argc, &stack_a);
+	if (!operation_checker(&stack_a, &stack_b))
+		exit_here(holder, argc);
 	else
 	{
 		if (check_list_sorted(stack_a) && !stack_b)
@@ -112,6 +116,7 @@ int	main(int argc, char **argv)
 		else
 			write(1, "KO\n", 3);
 	}
-	free_stack(&stack_a);
-	free_stack(&stack_b);
+	if (f)
+		free_array(holder);
+	return (free_stack(&stack_b), free_stack(&stack_a), 0);
 }

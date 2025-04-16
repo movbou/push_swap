@@ -22,30 +22,24 @@ int	ft_strcmp(char *s1, char *s2)
 	return (*s1 - *s2);
 }
 
-int	read_input(char *move)
+char	**string_handle(int *argc, char **argv, int *f)
 {
-	size_t	bits;
-	int		i;
+	char	**holder;
 
-	i = 0;
-	while (1)
-	{
-		bits = read(0, move + i, 1);
-		if (bits <= 0)
-			return (0);
-		if (move[i++] == '\n')
-			break ;
-	}
-	move[i] = 0;
-	return (1);
+	*argc = word_count(argv[1], ' ') + 1;
+	holder = ft_split(argv[1], ' ');
+	if (!holder)
+		exit_here(holder, *argc);
+	*f = 1;
+	return (holder);
 }
 
 int	is_valid(char **argv, int ac)
 {
 	int	i;
 
-	i = 1;
-	while (i < ac)
+	i = 0;
+	while (i < ac - 1)
 	{
 		if (!argv[i][0])
 		{

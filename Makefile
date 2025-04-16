@@ -21,7 +21,7 @@ OBJS =$(SRCS:.c=.o)
 BONUS_SRCS = get_next_line.c get_next_line_utils.c check_error.c ft_split.c checker.c moves_functions.c utils2.c sorting_helpers.c utils.c checker_helper.c
 BONUS_OBJS =$(BONUS_SRCS:.c=.o)
 
-all:  $(NAME) $(BONUS)
+all:  $(NAME)
 bonus: $(BONUS)
 
 $(NAME): $(OBJS)

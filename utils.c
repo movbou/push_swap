@@ -38,6 +38,7 @@ char	**free_array(char **s)
 		i++;
 	}
 	free(s);
+	s =NULL;
 	return (NULL);
 }
 

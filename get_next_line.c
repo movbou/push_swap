@@ -9,97 +9,100 @@
 /*   Updated: 2025/02/12 01:43:28 by achajar          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-#include "push_swap.h"
+#include "get_next_line.h"
 
-char	*ft_reset_lstr(char *lstr)
+static char	*line_set(char *line)
 {
-	char	*tmp;
-	int		i;
-	int		j;
+	char	*left_c;
+	ssize_t	i;
 
 	i = 0;
-	while (lstr[i] != 0 && lstr[i] != '\n')
+	while (line[i] != '\n' && line[i] != '\0')
 		i++;
-	if (lstr[i] == 0)
+	if (line[i] == 0 || line[1] == 0)
+		return (NULL);
+	left_c = ft_substr(line, i + 1, ft_strlen(line) - i);
+	if (!left_c || left_c[0] == '\0')
 	{
-		free(lstr);
-		return (0);
+		free(left_c);
+		left_c = NULL;
 	}
-	tmp = (char *)malloc((size_t)(ft_strlen(lstr) - i + 1));
-	if (tmp == 0)
-		return (0);
-	i++;
-	j = 0;
-	while (lstr[i] != 0)
-		tmp[j++] = lstr[i++];
-	tmp[j] = '\0';
-	free(lstr);
-	return (tmp);
+	line[i + 1] = 0;
+	return (left_c);
 }
 
-char	*ft_get_line(char *lstr)
+static char	*ft_strchr(char *s, int c)
 {
-	char	*tmp;
-	int		i;
+	unsigned int	i;
+	char			cc;
 
+	cc = (char) c;
 	i = 0;
-	if (lstr[0] == 0)
-		return (0);
-	while (lstr[i] != 0 && lstr[i] != '\n')
-		i++;
-	tmp = (char *)malloc(i + 2);
-	if (tmp == 0)
-		return (0);
-	i = 0;
-	while (lstr[i] != 0 && lstr[i] != '\n')
+	while (s[i])
 	{
-		tmp[i] = lstr[i];
+		if (s[i] == cc)
+			return ((char *) &s[i]);
 		i++;
 	}
-	if (lstr[i] == '\n')
-	{
-		tmp[i] = lstr[i];
-		i++;
-	}
-	tmp[i] = '\0';
-	return (tmp);
+	if (s[i] == cc)
+		return ((char *) &s[i]);
+	return (NULL);
 }
 
-char	*ft_get_lstr(int fd, char *lstr)
+static char	*fill_line_buffer(int fd, char *stash, char *buffer)
 {
-	char	*buffer;
-	int		result;
+	ssize_t	toread;
+	char	*tmp;
 
-	buffer = (char *)malloc((size_t)(BUFFER_SIZE + 1));
-	if (buffer == 0)
-		return (0);
-	result = 1;
-	while (ft_strchr(lstr, '\n') == 0 && result != 0)
+	toread = 1;
+	while (toread > 0)
 	{
-		result = read(fd, buffer, BUFFER_SIZE);
-		if (result == -1)
+		toread = read(fd, buffer, BUFFER_SIZE);
+		if (toread == -1)
 		{
-			free(buffer);
-			return (0);
+			free(stash);
+			return (NULL);
 		}
-		buffer[result] = 0;
-		lstr = ft_strjoin(lstr, buffer);
+		else if (toread == 0)
+			break ;
+		buffer[toread] = 0;
+		if (!stash)
+			stash = ft_strdup("");
+		tmp = stash;
+		stash = ft_strjoin(tmp, buffer);
+		free(tmp);
+		tmp = NULL;
+		if (ft_strchr(buffer, '\n'))
+			break ;
 	}
-	free(buffer);
-	return (lstr);
+	return (stash);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*lstr;
+	static char	*stash;
 	char		*line;
+	char		*buffer;
+	size_t		size_buf;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (0);
-	lstr = ft_get_lstr(fd, lstr);
-	if (!lstr)
-		return (0);
-	line = ft_get_line(lstr);
-	lstr = ft_reset_lstr(lstr);
+	size_buf = BUFFER_SIZE;
+	buffer = (char *)malloc((size_buf + 1) * sizeof(char));
+	if (fd < 0 || size_buf <= 0)
+	{
+		free(stash);
+		free(buffer);
+		stash = NULL;
+		buffer = NULL;
+		return (NULL);
+	}
+	if (!buffer)
+		return (NULL);
+	line = fill_line_buffer(fd, stash, buffer);
+	free(buffer);
+	buffer = NULL;
+	if (!line)
+		return (NULL);
+	stash = line_set(line);
 	return (line);
 }
+

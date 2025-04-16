@@ -57,7 +57,16 @@ int	check_nbr(char *argv)
 void	exit_error(void)
 {
 	write(2, "Error\n", 6);
-	exit(0);
+	exit(1);
+}
+void  exit_here(char **tmp_array, int argc)
+{
+
+	write(2, "Error\n", 6);
+	if(argc == 2){
+	free_array(tmp_array);
+	}
+	exit(1);
 }
 
 char	**init_check_error(int argc, char **argv)
@@ -69,9 +78,7 @@ char	**init_check_error(int argc, char **argv)
 	else
 		tmp_array = argv + 1;
 	if (!tmp_array || !tmp_array[0])
-	{
-		exit(0);
-	}
+		exit_here(tmp_array, argc);
 	return (tmp_array);
 }
 
@@ -87,11 +94,11 @@ void	check_error(int argc, char **argv)
 	{
 		tmp_argv = ft_atoi(tmp_array[i]);
 		if (tmp_argv < INT_MIN || tmp_argv > INT_MAX)
-			exit_error();
+			exit_here(tmp_array, argc);
 		if (!check_nbr(tmp_array[i]))
-			exit_error();
+			exit_here(tmp_array, argc);
 		if (check_doubles(tmp_array))
-			exit_error();
+			exit_here(tmp_array, argc);
 		i++;
 	}
 	if (argc == 2)
