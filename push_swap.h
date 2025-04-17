@@ -13,8 +13,7 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "get_next_line.h"
-
+# include "get_next_line.h"
 # include <limits.h>
 # include <stddef.h>
 # include <stdio.h>
@@ -27,10 +26,14 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
+void				initialize_data(t_list **stack_a, t_list **stack_b,
+						int *f_flag);
+char				**parse_and_validate_args(int *argc, char **argv,
+						int *f_flag);
 void				exit_here(char **tmp_array, int argc);
 char				**string_handle(int *argc, char **argv, int *f);
 void				check_and_reverse_if_needed(t_list **stack_a,
-									t_list **stack_b);
+						t_list **stack_b);
 int					ft_strcmp(char *s1, char *s2);
 void				exit_error(void);
 int					read_input(char *move);
@@ -72,6 +75,5 @@ void				rrotate(t_list **stack);
 void				rotate(t_list **stack);
 t_list				*ft_lstnew(int content);
 t_list				*ft_lstlast(t_list *lst);
-
 
 #endif

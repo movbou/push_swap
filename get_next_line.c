@@ -36,16 +36,16 @@ static char	*ft_strchr(char *s, int c)
 	unsigned int	i;
 	char			cc;
 
-	cc = (char) c;
+	cc = (char)c;
 	i = 0;
 	while (s[i])
 	{
 		if (s[i] == cc)
-			return ((char *) &s[i]);
+			return ((char *)&s[i]);
 		i++;
 	}
 	if (s[i] == cc)
-		return ((char *) &s[i]);
+		return ((char *)&s[i]);
 	return (NULL);
 }
 
@@ -105,4 +105,3 @@ char	*get_next_line(int fd)
 	stash = line_set(line);
 	return (line);
 }
-

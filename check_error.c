@@ -54,17 +54,12 @@ int	check_nbr(char *argv)
 	return (1);
 }
 
-void	exit_error(void)
+void	exit_here(char **tmp_array, int argc)
 {
 	write(2, "Error\n", 6);
-	exit(1);
-}
-void  exit_here(char **tmp_array, int argc)
-{
-
-	write(2, "Error\n", 6);
-	if(argc == 2){
-	free_array(tmp_array);
+	if (argc == 2)
+	{
+		free_array(tmp_array);
 	}
 	exit(1);
 }

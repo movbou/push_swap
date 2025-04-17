@@ -61,3 +61,9 @@ int	check_list_sorted(t_list *stack)
 	}
 	return (1);
 }
+
+void	exit_error(void)
+{
+	write(2, "Error\n", 6);
+	exit(1);
+}

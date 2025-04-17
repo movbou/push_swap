@@ -38,7 +38,7 @@ char	**free_array(char **s)
 		i++;
 	}
 	free(s);
-	s =NULL;
+	s = NULL;
 	return (NULL);
 }
 
