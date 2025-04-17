@@ -88,6 +88,34 @@ int	operation_checker(t_list **a, t_list **b)
 	return (1);
 }
 
+void	initialize_data(t_list **stack_a, t_list **stack_b, int *f_flag)
+{
+	*stack_a = NULL;
+	*stack_b = NULL;
+	*f_flag = 0;
+}
+
+char	**parse_and_validate_args(int *argc, char **argv, int *f_flag)
+{
+	char	**holder;
+
+	if (*argc == 1)
+		exit(0);
+	check_error(*argc, argv);
+	holder = argv + 1;
+	if (*argc == 2)
+	{
+		holder = string_handle(argc, argv, f_flag);
+	}
+	if (!is_valid(holder, *argc))
+	{
+		if (*f_flag)
+			free_array(holder);
+		exit(1);
+	}
+	return (holder);
+}
+
 int	main(int argc, char **argv)
 {
 	t_list	*stack_a;
@@ -95,20 +123,15 @@ int	main(int argc, char **argv)
 	int		f;
 	char	**holder;
 
-	f = 0;
-	stack_a = NULL;
-	stack_b = NULL;
-	if (argc == 1)
-		return (0);
-	check_error(argc, argv);
-	holder = argv + 1;
-	if (argc == 2)
-		holder = string_handle(&argc, argv, &f);
-	if (!is_valid(holder, argc))
-		return (1);
+	initialize_data(&stack_a, &stack_b, &f);
+	holder = parse_and_validate_args(&argc, argv, &f);
 	s_fill(holder, argc, &stack_a);
 	if (!operation_checker(&stack_a, &stack_b))
-		exit_here(holder, argc);
+	{
+		if (f)
+			free_array(holder);
+		exit(1);
+	}
 	else
 	{
 		if (check_list_sorted(stack_a) && !stack_b)
@@ -118,5 +141,6 @@ int	main(int argc, char **argv)
 	}
 	if (f)
 		free_array(holder);
-	return (free_stack(&stack_b), free_stack(&stack_a), 0);
+	free_stack(&stack_b);
+	free_stack(&stack_a);
 }

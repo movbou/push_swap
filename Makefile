@@ -36,5 +36,5 @@ fclean: clean
 	rm -f $(NAME) $(BONUS)
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all bonus clean fclean re
 .SECONDARY: $(OBJS) $(BONUS_OBJS)

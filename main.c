@@ -67,11 +67,11 @@ int	main(int argc, char *argv[])
 	char	**holder;
 	int		f;
 
+	if (argc < 2)
+		return (0);
 	f = 0;
 	stack_a = NULL;
 	stack_b = NULL;
-	if (argc < 2)
-		return (0);
 	check_error(argc, argv);
 	holder = argv + 1;
 	if (argc == 2)
